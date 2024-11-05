@@ -3,58 +3,60 @@ package qtrem;
 import java.util.Scanner;
 
 public class Solver {
-    public static void main(String[] args){
-        
+    public static void main(String[] args) {
         Trem trem = new Trem(0);
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
-
             String line = scanner.nextLine();
             System.out.println("$" + line);
             String[] cmd = line.split(" ");
             
-                try{
-                    
-                    if(cmd[0].equals("end")){
-                        
+            try {
+                switch (cmd[0]) {
+                    case "end":
+                        scanner.close();
+                        return; // ou break;
+
+                    case "la":
+                        System.out.println(trem);
                         break;
-                    }else if(cmd[0].equals("la")){
-                       
-                        System.out.println(trem);
-                    }else if(cmd[0].equals("init")){
-                        
+
+                    case "init":
                         trem = new Trem(Integer.parseInt(cmd[1]));
-                    }else if(cmd[0].equals("nwvag")){
+                        break;
 
-                        trem.addVagao(new Vagao (Integer.parseInt(cmd[1])));
-                    }else if(cmd[0].equals("entrar")){
-                        
+                    case "nwvag":
+                        trem.addVagao(new Vagao(Integer.parseInt(cmd[1])));
+                        break;
+
+                    case "entrar":
                         trem.embarcar(new Passageiro(cmd[1]));
-                    }else if(cmd[0].equals("sair")){
+                        break;
 
+                    case "sair":
                         trem.desembarcar(cmd[1]);
-                    }else if(cmd[0].equals("show")){
-                        
+                        break;
+
+                    case "show":
                         System.out.println(trem);
-                    }else if(cmd[0].equals("cadastro")){
-                        
+                        break;
+
+                    case "cadastro":
                         System.out.print(trem.getRegistro().showCad());
-                    }else if(cmd[0].equals("movimentacao")){
+                        break;
 
+                    case "movimentacao":
                         System.out.print(trem.getRegistro().showMov());
-                    }else{
-                        System.out.println("comando inválido!");
-                    }
+                        break;
 
-
-
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
-                }            
+                    default:
+                        System.out.println("Comando inválido!");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        
     }
-    private static Scanner scanner = new Scanner (System.in);
-    
 }
