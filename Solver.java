@@ -49,6 +49,10 @@ public class Solver {
                     case "movimentacao":
                         System.out.print(trem.getRegistro().showMov());
                         break;
+                    
+                    case "testar":
+                        System.out.println("SOMENTE PARA TESTAR");
+                        break;
 
                     default:
                         System.out.println("Comando inválido!");
